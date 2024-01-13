@@ -1,0 +1,22 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "pixel",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1568,
+       "width": 2556,
+       "x": 0,
+       "y": 28
+    },
+    "name": "Evolution",
+    "percent": 1,
+    "swallows": [
+       {
+        "class": "^Evolution$",
+        "instance": "^evolution$"
+       }
+    ],
+    "type": "con"
+}
+

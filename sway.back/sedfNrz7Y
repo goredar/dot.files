@@ -1,0 +1,134 @@
+include /etc/sway/config.d/*
+
+### Variables
+set $mod Mod4
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+# Your preferred terminal emulator
+set $term alacritty
+# Your preferred application launcher
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+# set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $menu wofi --show drun,run
+
+# Workspaces
+set $workspace_www 1
+set $workspace_editor 2
+set $workspace_messengers 3
+set $workspace_mail 4
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+output * bg arch.png fill
+output eDP-1 scale 1.5
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Idle configuration
+#
+# Example configuration:
+#
+
+exec swayidle -w \
+     timeout 300 'swaylock -f -c 000000' \
+     timeout 600 'swaymsg "output * dpms off"' \
+          resume 'swaymsg "output * dpms on"' \
+     before-sleep 'swaylock -f -c 000000'
+bindsym --to-code $mod+Shift+q exec swaylock -f -c 000000
+
+### Input configuration
+input "type:touchpad" {
+    accel_profile adaptive
+    pointer_accel 0.5
+    # click_method clickfinger
+    # click_method button_areas
+    # drag enabled
+    # drag_lock enabled
+    # drag_lock disabled
+    # dwt enabled
+    tap enabled
+    scroll_method two_finger
+    natural_scroll enabled
+    middle_emulation enabled
+    tap_button_map lmr
+}
+
+input "type:keyboard" {
+    xkb_layout "us,ru"
+    xkb_options "grp:alt_space_toggle,grp_led:caps,ctrl:ralt_rctrl,caps:escape"
+}
+
+### Key bindings
+#
+# Basics:
+#
+    # Start a terminal
+    bindsym --to-code $mod+Return exec $term
+
+    # Kill focused window
+    bindsym --to-code $mod+q kill
+
+    # Start your launcher
+    bindsym --to-code $mod+d exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym --to-code $mod+Shift+r reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym --to-code $mod+$left focus left
+    bindsym --to-code $mod+$down focus down
+    bindsym --to-code $mod+$up focus up
+    bindsym --to-code $mod+$right focus right
+    # Or use $mod+[up|down|left|right]
+    bindsym --to-code $mod+Left focus left
+    bindsym --to-code $mod+Down focus down
+    bindsym --to-code $mod+Up focus up
+    bindsym --to-code $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym --to-code $mod+Shift+$left move left
+    bindsym --to-code $mod+Shift+$down move down
+    bindsym --to-code $mod+Shift+$up move up
+    bindsym --to-code $mod+Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym --to-code $mod+Shift+Left move left
+    bindsym --to-code $mod+Shift+Down move down
+    bindsym --to-code $mod+Shift+Up move up
+    bindsym --to-code $mod+Shift+Right move right
+#
+# Workspaces:
+#
+    # Switch to workspace
+    bindsym --to-code $mod+1 workspace number 1
+    bindsym --to-code $mod+2 workspace number 2
+    bindsym --to-code $mod+3 workspace number 3
+    bindsym --to-code $mod+4 workspace number 4
+    bindsym --to-code $mod+5 workspace number 5
+    bindsym --to-code $mod+6 workspace number 6
+    bindsym --to-code $mod+7 workspace number 7
+    bindsym --to-code $mod+8 workspace number 8
+    bindsym --to-code $mod+9 workspace number 9
+    bindsym --to-code $mod+0 workspace number 10
+    # Move focused container to workspace
+    bindsym --to-co

@@ -1,0 +1,10 @@
+# import:
+#   - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
+font:
+  size: 10
+  normal:
+    family: Hack
+    # family: DejaVuSansMono Nerd Font Mono
+window:
+  # decorations: buttonless
+  decorations: none
